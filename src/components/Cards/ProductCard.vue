@@ -1,9 +1,9 @@
 <template>
     <div class="product-card">
-        <a :href="link || ''" class="product-card-link">
+        <a :href="link" class="product-card-link">
             <div class="product-card__pic">
                 <img
-                    src="//a.lmcdn.ru/product/H/E/HE002EMIRLU2_10557987_1_v1.jpg"
+                    :src="cover"
                     class="product-card__pic-img"
                 />
                 <div class="product-card__overlay-top-left">
@@ -32,10 +32,10 @@
                     </span>
                 </div>
                 <div class="product-card__brand-name product-card__desc-item">
-                    {{ brand || '\u2014' }}
+                    {{ brand }}
                 </div>
                 <div class="product-card__product-name product-card__desc-item">
-                    {{ productName || '\u2014' }}
+                    {{ productName }}
                 </div>
                 <div class="product-card__sizes product-card__desc-item">
                     {{ sizes }}
@@ -49,39 +49,18 @@
 export default {
     name: 'ProductCard',
     props: {
-        link: {
-            required: false,
-            type: String,
-        },
-        price: {
-            required: false,
-            type: String,
-        },
-        oldPrice: {
-            required: false,
-            type: String,
-        },
-        brand: {
-            required: false,
-            type: String,
-        },
-        productName: {
-            required: false,
-            type: String,
-        },
-        sizes: {
-            required: false,
-            type: String,
-            default: 'Нет данных о размерах'
-        }
-    },
-    mounted() {
-        console.log(this.price, 'price')
+        link: { type: String, },
+        price: { type: Number, },
+        oldPrice: { type: Number, },
+        cover: { type: String },
+        brand: { type: String, },
+        productName: { type: String, },
+        sizes: { type: String, default: 'Нет данных о размерах' }
     },
 }
 </script>
 
-<style scoped lang="sass">
+<style lang="sass">
 .product-card
     transition: opacify .3s
 
@@ -93,6 +72,9 @@ export default {
     position: relative
     &-img
         width: 100%
+        max-height: 100%
+        max-width: 100%
+        object-fit: cover
 
 .product-card__desc
     padding: 12px 10px 8px

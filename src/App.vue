@@ -1,12 +1,20 @@
 <template>
     <div id="app">
-        <vc-root active-view="main">
-            <vc-view name="main" active-panel="home">
-                <vc-panel name="home">
-                    <home></home>
-                </vc-panel>
-            </vc-view>
-        </vc-root>
+        <vc-epic :active-story="activeStory">
+            <vc-tabbar slot="tabbar">
+                <vc-tabbar-item text="Главная" :selected="activeStory === 'home'" @click="setActiveStory('home')"></vc-tabbar-item>
+                <vc-tabbar-item text="Мужчинам" :selected="activeStory === 'mens'" @click="setActiveStory('mens')"></vc-tabbar-item>
+            </vc-tabbar>
+            <home name="home" />
+            <mens name="mens" />
+        </vc-epic>
+<!--        <vc-root active-view="main">-->
+<!--            <vc-view name="main" active-panel="home">-->
+<!--                <vc-panel name="home">-->
+<!--                    <home></home>-->
+<!--                </vc-panel>-->
+<!--            </vc-view>-->
+<!--        </vc-root>-->
     </div>
 </template>
 
@@ -14,12 +22,23 @@
 import Vue from 'vue'
 import Home from './views/Home.vue'
 import '@fireworksx/vc_ui/dist/vc.css'
+import { mapGetters } from 'vuex'
+import Mens from './views/Mens.vue'
 
 export default Vue.extend({
     name: 'App',
     components: {
+        Mens,
         Home,
     },
+    computed: {
+        ...mapGetters(['activeStory'])
+    },
+    methods: {
+        setActiveStory(story: string) {
+            this.$store.commit('setActiveStory', story)
+        }
+    }
 })
 </script>
 
@@ -36,6 +55,5 @@ body {
 #app {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    height: 2000px;
 }
 </style>

@@ -16,4 +16,7 @@ new Vue({
     router,
     store,
     render: h => h(App),
+    mounted() {
+        VC.lockDomZoom()
+    }
 }).$mount('#app');
