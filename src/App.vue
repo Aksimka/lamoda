@@ -2,19 +2,28 @@
     <div id="app">
         <vc-epic :active-story="activeStory">
             <vc-tabbar slot="tabbar">
-                <vc-tabbar-item text="Главная" :selected="activeStory === 'home'" @click="setActiveStory('home')"></vc-tabbar-item>
-                <vc-tabbar-item text="Мужчинам" :selected="activeStory === 'mens'" @click="setActiveStory('mens')"></vc-tabbar-item>
+                <vc-tabbar-item
+                    text="Главная"
+                    :selected="activeStory === 'home'"
+                    @click="setActiveStory('home')"
+                ></vc-tabbar-item>
+                <vc-tabbar-item
+                    text="Мужчинам"
+                    :selected="activeStory === 'men'"
+                    @click="setActiveStory('men')"
+                ></vc-tabbar-item>
             </vc-tabbar>
             <home name="home" />
-            <mens name="mens" />
+            <men name="men" />
+            <products-list name="products-list" />
         </vc-epic>
-<!--        <vc-root active-view="main">-->
-<!--            <vc-view name="main" active-panel="home">-->
-<!--                <vc-panel name="home">-->
-<!--                    <home></home>-->
-<!--                </vc-panel>-->
-<!--            </vc-view>-->
-<!--        </vc-root>-->
+        <!--        <vc-root active-view="main">-->
+        <!--            <vc-view name="main" active-panel="home">-->
+        <!--                <vc-panel name="home">-->
+        <!--                    <home></home>-->
+        <!--                </vc-panel>-->
+        <!--            </vc-view>-->
+        <!--        </vc-root>-->
     </div>
 </template>
 
@@ -23,22 +32,22 @@ import Vue from 'vue'
 import Home from './views/Home.vue'
 import '@fireworksx/vc_ui/dist/vc.css'
 import { mapGetters } from 'vuex'
-import Mens from './views/Mens.vue'
+import Men from './views/Men.vue'
 
 export default Vue.extend({
     name: 'App',
     components: {
-        Mens,
+        Men,
         Home,
     },
     computed: {
-        ...mapGetters(['activeStory'])
+        ...mapGetters(['activeStory']),
     },
     methods: {
         setActiveStory(story: string) {
             this.$store.commit('setActiveStory', story)
-        }
-    }
+        },
+    },
 })
 </script>
 
