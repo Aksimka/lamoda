@@ -43,11 +43,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-* {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
 body {
     margin: 0;
     padding: 0;

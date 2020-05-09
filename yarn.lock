@@ -796,10 +796,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@fireworksx/vc_ui@^0.1.51":
-  version "0.1.51"
-  resolved "https://registry.yarnpkg.com/@fireworksx/vc_ui/-/vc_ui-0.1.51.tgz#be6f94cee7bd5ab25eb6a732e343575e81de6488"
-  integrity sha512-uljXPhtQOxY4METZwKpDvqNeQl6kQ5Z4Ko0rfbf3ROCKoaxiyr8MoIPs9AYpUfQLmiaAO7if231sY7kGXl1ueQ==
+"@fireworksx/vc_ui@^0.1.78":
+  version "0.1.78"
+  resolved "https://registry.yarnpkg.com/@fireworksx/vc_ui/-/vc_ui-0.1.78.tgz#6d752802a4b170b1966b559aafb503bf2bf0b515"
+  integrity sha512-B9NBjxaKKTVY1Bx5kFzZ1xU/Hu6tEm/TjrIUVY+9Vwjga1Wv0fTHPOGYil4veutVPxLoiQ+9qrlPN9myUF/9BA==
   dependencies:
     "@babel/runtime" "^7.9.2"
     core-js "^3.6.4"
