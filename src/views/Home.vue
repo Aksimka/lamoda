@@ -2,7 +2,13 @@
     <vc-view active-panel="main">
         <vc-modal-root :active-modal="activeModal">
             <vc-modal-card name="subscribe">
-
+                <template slot="header">
+                    Отправляйте деньги друзьям, используя банковскую карту
+                </template
+                >
+                <template slot="caption">
+                    Номер карты получателя не нужен — он сам решит, куда зачислить средства.
+                </template>
             </vc-modal-card>
         </vc-modal-root>
         <vc-panel name="main">
