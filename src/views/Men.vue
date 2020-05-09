@@ -18,12 +18,39 @@
                     Мы будем отправлять вам только самые выгодные предложения
                 </template>
             </vc-modal-card>
+            <vc-modal-page name="categories" @close="activeModal = null">
+                <vc-modal-page-header slot="header"
+                    >Категории</vc-modal-page-header
+                >
+                <vc-group>
+                    <vc-cell
+                        v-for="(item, index) in categories"
+                        expandable
+                        :indicator="item.count"
+                        :key="'categories_' + index"
+                    >
+                        <vc-avatar
+                            slot="before"
+                            :src="item.cover"
+                            :size="40"
+                            mode="app"
+                        />
+                        {{ item.title }}
+                    </vc-cell>
+                </vc-group>
+                <vc-div />
+            </vc-modal-page>
         </vc-modal-root>
         <vc-panel name="main">
             <vc-panel-header>Мужчинам</vc-panel-header>
             <vc-fixed-layout vertical="bottom">
                 <vc-div class="men-fixed-layout">
-                    <vc-button mode="secondary" size="xl">Категории</vc-button>
+                    <vc-button
+                        mode="secondary"
+                        size="xl"
+                        @click="activeModal = 'categories'"
+                        >Категории</vc-button
+                    >
                     <vc-button size="xl">Фильтры</vc-button>
                 </vc-div>
             </vc-fixed-layout>
@@ -116,6 +143,32 @@ export default {
                 sizes: '39 49 41 42 43 44 45',
             },
         ],
+        categories: [
+            {
+                title: 'Ботинки',
+                cover:
+                    '//a.lmcdn.ru/img236x341/M/P/MP002XM1GVZ8_9051882_1_v1.jpg',
+                count: 250,
+            },
+            {
+                title: 'Домашняя обувь',
+                cover:
+                    '//a.lmcdn.ru/img236x341/T/O/TO263AMHLDN4_10017263_1_v1.jpg',
+                count: 441,
+            },
+            {
+                title: 'Кроссовки и кеды',
+                cover:
+                    '//a.lmcdn.ru/img236x341/T/O/TO263AMHLDN4_10017263_1_v1.jpg',
+                count: 104,
+            },
+            {
+                title: 'Туфли',
+                cover:
+                    '//a.lmcdn.ru/img236x341/M/P/MP002XM0QTH6_10329489_1_v1.jpg',
+                count: 13,
+            },
+        ],
     }),
 }
 </script>
@@ -125,6 +178,7 @@ export default {
     display: grid
     grid-template-columns: 1fr 1fr
     grid-gap: 10px
+    background: #fff
 .men-products-list
     display: grid
     grid-template-columns: 1fr 1fr
