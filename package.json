@@ -9,7 +9,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.9.2",
-        "@fireworksx/vc_ui": "^0.1.78",
+        "@fireworksx/vc_ui": "^0.1.8",
         "core-js": "^3.6.4",
         "register-service-worker": "^1.7.1",
         "vue": "^2.6.11",

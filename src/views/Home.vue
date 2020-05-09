@@ -11,14 +11,50 @@
                 </template>
             </vc-modal-card>
             <vc-modal-page name="basket" @close="activeModal = null">
-                <vc-modal-page-header slot="header">Корзина</vc-modal-page-header>
+                <vc-modal-page-header slot="header">Корзина
+                    <vc-panel-header-button slot="right" @click="activeModal = 'order'">
+                        <vc-icon-28-arrow-right-outline/>
+                    </vc-panel-header-button>
+                </vc-modal-page-header>
                 <vc-group>
-                    <vc-cell v-for="(item, index) in list" expandable :key="index">
+                    <vc-cell v-for="(item, index) in basket" expandable :indicator="item.price" :key="index">
                         <vc-avatar slot="before" :src="item.cover" :size="40" mode="app"/>
                         {{ item.brand }} - {{ item.productName }}
                         <template slot="indicator">{{item.price}}</template>
                     </vc-cell>
                 </vc-group>
+                <vc-footer>Товаров на сумму 7200</vc-footer>
+                <vc-div/>
+            </vc-modal-page>
+            <vc-modal-page name="order" @close="activeModal = null">
+                <vc-modal-page-header slot="header">Оформление заказа</vc-modal-page-header>
+                <vc-form-layout>
+                    <vc-input top="Имя" placeholder="Ваше имя"/>
+                    <vc-input top="Телефон" placeholder="Мобильный телефон"/>
+                    <vc-input top="Промо-код" placeholder="Введите промо-код"/>
+                    <vc-button size="xl" @click="activeModal = null">Перейти к оплате</vc-button>
+                </vc-form-layout>
+                <vc-div/>
+            </vc-modal-page>
+            <vc-modal-page name="categories" @close="activeModal = null">
+                <vc-modal-page-header slot="header">Категории</vc-modal-page-header>
+                <vc-group>
+                    <vc-cell v-for="(item, index) in categories" expandable :indicator="item.count" :key="'categories_' + index" @click="activeModal = 'detailCategories'">
+                        <vc-avatar slot="before" :src="item.cover" :size="40" mode="app"/>
+                        {{ item.title }}
+                    </vc-cell>
+                </vc-group>
+                <vc-div/>
+            </vc-modal-page>
+            <vc-modal-page name="detailCategories" @close="activeModal = null">
+                <vc-modal-page-header slot="header">Категории</vc-modal-page-header>
+                <vc-group>
+                    <vc-cell v-for="(item, index) in detailCategories" expandable :indicator="item.count" :key="'detailCategories_' + index">
+                        <vc-avatar slot="before" :src="item.cover" :size="40" mode="app"/>
+                        {{ item.title }}
+                    </vc-cell>
+                </vc-group>
+                <vc-div/>
             </vc-modal-page>
         </vc-modal-root>
         <vc-panel name="main">
@@ -89,7 +125,11 @@
                 </vc-form-layout>
             </vc-group>
             <vc-div></vc-div>
-            <vc-div></vc-div>
+            <vc-fixed-layout>
+                <vc-div>
+                    <vc-button size="xl" @click="activeModal = 'categories'">Категории</vc-button>
+                </vc-div>
+            </vc-fixed-layout>
         </vc-panel>
 <!--        <div style="display: flex">-->
 <!--            <product-card-->
@@ -172,6 +212,9 @@ export default {
         },
         sawItems() {
             return this.shuffle(this.items)
+        },
+        basket() {
+            return this.shuffle(this.items).slice(0, 5)
         },
         ...mapGetters('basket', [
             'list'
@@ -260,6 +303,61 @@ export default {
                         this.activeModal = null
                     }
                 }
+            ],
+            categories: [
+                {
+                    title: 'Одежда',
+                    cover: 'https://a.lmcdn.ru/img236x341/H/E/HE002EMIIPI5_10317360_1_v1.jpg',
+                    count: 250
+                },
+                {
+                    title: 'Обувь',
+                    cover: 'https://a.lmcdn.ru/img236x341/M/P/MP002XM0QUY0_10201412_1_v1.jpg',
+                    count: 441
+                },
+                {
+                    title: 'Аксессуары',
+                    cover: 'https://a.lmcdn.ru/img236x341/L/E/LE306DMUMK38_5110685_1_v2.jpg',
+                    count: 104
+                },
+                {
+                    title: 'Premium',
+                    cover: 'https://a.lmcdn.ru/img236x341/M/A/MA173EMIVAG2_10696294_1_v1_2x.jpg',
+                    count: 13
+                },
+            ],
+            detailCategories: [
+                {
+                    title: 'Ботинки',
+                    cover: 'https://a.lmcdn.ru/img236x341/M/P/MP002XM20UV1_10828851_1_v1.jpg',
+                    count: 15
+                },
+                {
+                    title: 'Кроссовки и кеды',
+                    cover: 'https://a.lmcdn.ru/img236x341/P/O/PO006AMJBTL9_10926727_1_v1.jpg',
+                    count: 23
+                },
+                {
+                    title: 'Мокасины и топсайдеры',
+                    cover: 'https://a.lmcdn.ru/img236x341/P/O/PO006AMHUBE3_11075896_1_v1.jpg',
+                    count: 37
+                },
+                {
+                    title: 'Резиновая обувь',
+                    cover: 'https://a.lmcdn.ru/img236x341/M/P/MP002XM20UUO_10834742_1_v1.jpg',
+                    count: 12
+                },
+                {
+                    title: 'Мокасины и топсайдеры',
+                    cover: 'https://a.lmcdn.ru/img236x341/P/O/PO006AMHUBE3_11075896_1_v1.jpg',
+                    count: 37
+                },
+
+                {
+                    title: 'Кроссовки и кеды',
+                    cover: 'https://a.lmcdn.ru/img236x341/P/O/PO006AMJBTL9_10926727_1_v1.jpg',
+                    count: 23
+                },
             ]
         }
     },
